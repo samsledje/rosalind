@@ -1,4 +1,4 @@
-# RNA - http://rosalind.info/problems/subs/
+# SUBS - http://rosalind.info/problems/subs/
 
 f = open('datasets/rosalind_subs.txt')
 s = f.readline().strip()

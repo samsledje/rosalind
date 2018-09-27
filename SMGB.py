@@ -1,4 +1,4 @@
-# HAMM - http://rosalind.info/problems/SMGB
+# SMGB - http://rosalind.info/problems/SMGB
 from math import inf
 import numpy as np
 
@@ -15,44 +15,6 @@ char_dict = {
     'G': 2,
     'T': 3
 }
-
-# score_matrix = {
-#     'A': {
-#         'A': 1,
-#         'C': -1,
-#         'G': -1,
-#         'T': -1,
-#         '-': -1
-#     },
-#     'C': {
-#         'A': -1,
-#         'C': 1,
-#         'G': -1,
-#         'T': -1,
-#         '-': -1
-#     },
-#     'G': {
-#         'A': -1,
-#         'C': -1,
-#         'G': 1,
-#         'T': -1,
-#         '-': -1
-#     },
-#     'T': {
-#         'A': -1,
-#         'C': -1,
-#         'G': -1,
-#         'T': 1,
-#         '-': -1
-#     },
-#     '-': {
-#         'A': -1,
-#         'C': -1,
-#         'G': -1,
-#         'T': -1,
-#         '-': inf
-#     }
-# }
 
 f = open('datasets/rosalind_smgb.txt')
 seq = []
@@ -131,14 +93,14 @@ while i > 0 or j > 0:
         y_prime = '-' + y_prime
         i -= 1
 
-# outfile = open('result.txt', 'w+')
-# outfile.write(str(int(M[(m, n)])))
-# outfile.write('\n')
-# outfile.write(x_prime)
-# outfile.write('\n')
-# outfile.write(y_prime)
-# outfile.close()
-print(int(M[(m, n)]))
-print(x_prime)
-print(y_prime)
+outfile = open('smgb_result.txt', 'w+')
+outfile.write(str(int(M[(m, n)])))
+outfile.write('\n')
+outfile.write(x_prime)
+outfile.write('\n')
+outfile.write(y_prime)
+outfile.close()
+# print(int(M[(m, n)]))
+# print(x_prime)
+# print(y_prime)
 

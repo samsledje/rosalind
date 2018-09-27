@@ -1,4 +1,4 @@
-# HAMM - http://rosalind.info/problems/GLOB
+# GLOB - http://rosalind.info/problems/GLOB
 from math import inf
 import numpy as np
 

@@ -1,4 +1,4 @@
-# RNA - http://rosalind.info/problems/prot/
+# PROT - http://rosalind.info/problems/prot/
 
 f = open('datasets/rosalind_prot.txt')
 s = f.readline().strip()
