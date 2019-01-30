@@ -104,3 +104,4 @@ outfile.close()
 # print(x_prime)
 # print(y_prime)
 
+f.close()

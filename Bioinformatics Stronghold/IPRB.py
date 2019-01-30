@@ -23,3 +23,5 @@ Aa_aa = Aa * (n-1) / (p-1)
 
 total = AA_AA + 2*AA_Aa + 2*AA_aa + 0.75*Aa_Aa + 2*0.5*Aa_aa
 print(total)
+
+f.close()

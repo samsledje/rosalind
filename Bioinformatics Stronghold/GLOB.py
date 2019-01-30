@@ -86,3 +86,5 @@ while i > 0 or j > 0:
 
 print(x_prime)
 print(y_prime)
+
+f.close()

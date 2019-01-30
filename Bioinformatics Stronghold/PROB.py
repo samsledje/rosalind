@@ -1,5 +1,5 @@
-# IPRB - http://rosalind.info/problems/prob/
-import math
+# PROB - http://rosalind.info/problems/prob/
+from math import log10
 
 f = open('datasets/rosalind_prob.txt')
 #f = open('datasets/test.txt')
@@ -10,6 +10,9 @@ B = [0] * len(A)
 pr_dict = {}
 
 for i in range(len(A)):
-    B[i] = round(s.count('A') * math.log10((1-A[i]) / 2) + s.count('C') * math.log10(A[i] / 2) + s.count('G') * math.log10(A[i] / 2) + s.count('T') * math.log10((1-A[i]) / 2), 3)
+    B[i] = round(s.count('A') * log10((1-A[i]) / 2) + s.count('C') * log10(A[i] / 2) + s.count('G') * log10(A[i] / 2) + s.count('T') * log10((1-A[i]) / 2), 3)
 
-print(', '.join([str(i) for i in B]))
+assert(len(B) == len(A))
+print(' '.join(map(str, B)))
+
+f.close()

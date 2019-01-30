@@ -37,3 +37,5 @@ for s in seqs:
 best = max(seqs, key=lambda x: x.gc)
 print(best.label)
 print(best.gc)
+
+f.close()

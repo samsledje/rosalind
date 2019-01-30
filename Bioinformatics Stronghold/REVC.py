@@ -15,3 +15,5 @@ for l in s:
 
 rev_comp.reverse()
 print(''.join(rev_comp))
+
+f.close()

@@ -16,3 +16,5 @@ for i in range(2, n):
     dp_array[i] = dp_array[i-1] + k*dp_array[i-2]
 
 print(dp_array[n-1])
+
+f.close()

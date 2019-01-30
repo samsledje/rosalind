@@ -24,4 +24,6 @@ def permute(n, l, nums):
 permute(i, [], numbers)
 out.close()
 
+f.close()
+
     

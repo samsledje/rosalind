@@ -13,3 +13,5 @@ for i in range(n-m):
         l.append(str(i+1))
 
 print(' '.join(l))
+
+f.close()

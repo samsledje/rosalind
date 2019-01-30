@@ -12,3 +12,5 @@ for i in range(len(s)):
         d += 1
 
 print(d)
+
+f.close()

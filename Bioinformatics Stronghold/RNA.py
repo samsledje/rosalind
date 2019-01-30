@@ -9,3 +9,5 @@ for i in range(len(l)):
         l[i] = 'U'
 
 print(''.join(l))
+
+f.close()

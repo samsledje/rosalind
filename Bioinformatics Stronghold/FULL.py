@@ -72,3 +72,5 @@ while len(path) < n:
             break
 
 print(''.join(path))
+
+f.close()

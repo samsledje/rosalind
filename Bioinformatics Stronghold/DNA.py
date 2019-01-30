@@ -16,3 +16,5 @@ for i in s:
         t += 1
 
 print(a,c,g,t)
+
+f.close()

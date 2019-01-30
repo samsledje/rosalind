@@ -34,3 +34,5 @@ for i in range(0,n,3):
         l.append(amino_acid)
 
 print(''.join(l))
+
+f.close()
