@@ -3,7 +3,7 @@ import numpy as np
 import math
 
 #with open('datasets/test.txt', 'r') as f:
-with open('datasets/rosalind_ba10c.txt', 'r') as f:
+with open('datasets/rosalind_ba10c2.txt', 'r') as f:
     s = f.readline().strip()
     n = len(s)
     f.readline()
