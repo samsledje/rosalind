@@ -66,4 +66,11 @@ for i in range(n):
         SD[i, q] = F[i, q] * B[i, q] / fwd
 
 print(SD)
-np.savetxt("BA10J.tsv", SD, delimiter="\t")
+
+with open('BA10J.tsv', 'w+') as f:
+    for q in range(N):
+        f.write(Q[q]+'\t')
+    for i in range(n):
+        f.write('\n')
+        for q in range(N):
+            f.write(str(SD[i, q])+'\t')

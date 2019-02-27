@@ -1,5 +1,6 @@
 # BA10K - http://rosalind.info/problems/ba10k/
 import numpy as np
+np.set_printoptions(suppress=True)
 import math
 
 
@@ -39,44 +40,42 @@ B = np.zeros((n,N), dtype=float)
 Nqqp = np.zeros((N,N), dtype=float)
 Nqsig = np.zeros((N,r), dtype=float)
 
-#Forward Probabilities
-for q in range(N):
-    F[0,q] = qstart_pr[q] * E[q, sigma.index(x[0])]
-
-for i in range(1,n):
+# Iteration Loop
+for _ in range(I):
+    #Forward Probabilities
     for q in range(N):
-        for qpr in range(N):
-            F[i, q] += F[i-1, qpr] * A[qpr, q] * E[q, sigma.index(x[i])]
+        F[0,q] = qstart_pr[q] * E[q, sigma.index(x[0])]
+  
+    for i in range(1,n):
+        for q in range(N):
+            for qpr in range(N):
+                F[i, q] += F[i-1, qpr] * A[qpr, q] * E[q, sigma.index(x[i])]
 
-#Backward Probabilities
-for q in range(N):
-    B[n-1, q] = 1
-
-for i in range(n-2, -1, -1):
+    #Total Forward
+    prx = 0
     for q in range(N):
-        for qpr in range(N):
-            B[i, q] += B[i+1, q] * A[q, qpr] * E[q, sigma.index(x[i])]
+        prx += F[n-1, q]
 
-#Compute Pr(X=x)
-prx = sum([F[n-1,q] for q in range(N)])
-print(prx)
+    #Backward Probabilities
+    for q in range(N):
+        B[n-1, q] = 1
 
-for _ in range(1):
+    for i in range(n-2, -1, -1):
+        for q in range(N):
+            for qpr in range(N):
+                B[i, q] += B[i+1, qpr] * A[q, qpr] * E[qpr, sigma.index(x[i+1])]
+
     # Compute Nqqp
     for q in range(N):
         for qpr in range(N):
-            print(F[i,q] * A[q,qpr] * E[qpr,sigma.index(x[i])] * B[i,q] / prx)
-            s = sum([F[i,q] * A[q,qpr] * E[qpr,sigma.index(x[i])] * B[i,q] for i in range(n)])
-            Nqqp[q,qpr] = s / prx
+            Nqqp[q,qpr] = sum([F[i,q] * A[q,qpr] * E[qpr,sigma.index(x[i+1])] * B[i+1,qpr] for i in range(n-2)]) / prx
 
     # Compute Nqsig
     for q in range(N):
         for sig in range(r):
-            s = 0
-            for i in range(n):
-                if sigma[sig] == x[i]:
-                    s += F[i,q] * B[i,q]
-    print(Nqsig, Nqqp)
+            Nqsig[q,sig] = sum([F[i,q] * B[i,q] for i in range(n-1) if x[i] == sigma[sig]]) / prx
+
+
     # Update A
     for q in range(N):
         qsum = sum([Nqqp[q,qdp] for qdp in range(N)])
@@ -87,6 +86,21 @@ for _ in range(1):
     for q in range(N):
         sigsum = sum([Nqsig[q,spr] for spr in range(r)])
         for sig in range(r):
-                E[q,sig] = Nqsig[q,sig]
+                E[q,sig] = Nqsig[q,sig] / sigsum
 
-
+print(A)
+print(E)
+with open("BA10K.tsv", "w+") as f:
+    for q in range(N):
+        f.write('\t'+Q[q]+'\t')
+    for q in range(N):
+        f.write('\n'+Q[q]+'\t')
+        for qpr in range(N):
+            f.write(str(A[q,qpr])+'\t')
+    f.write("\n--------\n")
+    for sig in range(r):
+        f.write('\t'+sigma[sig]+'\t')
+    for q in range(N):
+        f.write('\n'+Q[q]+'\t')
+        for sig in range(r):
+            f.write(str(E[q,sig])+'\t')
