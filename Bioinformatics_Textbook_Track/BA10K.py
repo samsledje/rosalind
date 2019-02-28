@@ -34,18 +34,18 @@ with open('datasets/test.txt', 'r') as f:
         for j in range(r):
             E[i,j] = emiss_pr[j]
 
-# Forward & Backward matricies
-F = np.zeros((n,N), dtype=float)
-B = np.zeros((n,N), dtype=float)
-Nqqp = np.zeros((N,N), dtype=float)
-Nqsig = np.zeros((N,r), dtype=float)
-
 # Iteration Loop
 for _ in range(I):
+    # Forward & Backward matricies
+    F = np.zeros((n,N), dtype=float)
+    B = np.zeros((n,N), dtype=float)
+    Nqqp = np.zeros((N,N), dtype=float)
+    Nqsig = np.zeros((N,r), dtype=float)
+
     #Forward Probabilities
     for q in range(N):
-        F[0,q] = qstart_pr[q] * E[q, sigma.index(x[0])]
-  
+        F[0,q] = E[q, sigma.index(x[0])]
+
     for i in range(1,n):
         for q in range(N):
             for qpr in range(N):
@@ -64,6 +64,7 @@ for _ in range(I):
         for q in range(N):
             for qpr in range(N):
                 B[i, q] += B[i+1, qpr] * A[q, qpr] * E[qpr, sigma.index(x[i+1])]
+                #print(i,q,qpr,B[i+1, qpr],A[q,qpr],E[qpr, sigma.index(x[i+1])],B[i,q])
 
     # Compute Nqqp
     for q in range(N):
@@ -75,21 +76,19 @@ for _ in range(I):
         for sig in range(r):
             Nqsig[q,sig] = sum([F[i,q] * B[i,q] for i in range(n-1) if x[i] == sigma[sig]]) / prx
 
-
-    # Update A
+    # Update A and E
     for q in range(N):
         qsum = sum([Nqqp[q,qdp] for qdp in range(N)])
         for qpr in range(N):
-                A[q,qpr] = Nqqp[q,qpr] / qsum
-
-    # Update E
-    for q in range(N):
+            A[q,qpr] = Nqqp[q,qpr] / qsum
+            
         sigsum = sum([Nqsig[q,spr] for spr in range(r)])
         for sig in range(r):
-                E[q,sig] = Nqsig[q,sig] / sigsum
+            E[q,sig] = Nqsig[q,sig] / sigsum
 
 print(A)
 print(E)
+
 with open("BA10K.tsv", "w+") as f:
     for q in range(N):
         f.write('\t'+Q[q]+'\t')
