@@ -89,5 +89,6 @@ with open('datasets/rosalind_ba2g.txt', 'r') as f:
         Dna.append(f.readline().strip())
 
 m = multipleGibbsSampler(Dna,k,t,N,20)
+print('-'*k)
 for motif in m:
     print(motif)
