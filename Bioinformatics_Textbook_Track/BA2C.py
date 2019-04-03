@@ -10,7 +10,7 @@ nucleotide_map = {
 }
 
 def get_kmers(T, k):
-    for i in range(len(T)-k):
+    for i in range(len(T)-k+1):
         yield T[i:i+k]
 
 def calc_kmer_pr(kmer,P):
