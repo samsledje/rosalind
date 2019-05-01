@@ -2,7 +2,6 @@
 import numpy as np
 import math
 
-#with open('datasets/test.txt', 'r') as f:
 with open('datasets/rosalind_ba10c2.txt', 'r') as f:
     s = f.readline().strip()
     n = len(s)
@@ -16,7 +15,8 @@ with open('datasets/rosalind_ba10c2.txt', 'r') as f:
     f.readline()
     A = np.zeros((N,N), dtype=float)
     E = np.zeros((N,r), dtype=float)
-    qstart_pr = [1/N for i in range(N)]
+    #qstart_pr = [1/N for i in range(N)]
+    qstart_pr = [0.2, 0.4, 0.4]
 
     for i in range(N):
         trans_pr = [float(k) for k in f.readline().strip().split()[1:]]
@@ -39,7 +39,7 @@ prev = np.zeros((N,n))
 
 for j in range(N):
     c = sigma.index(s[0])
-    V[j,0] = math.log(E[j,c])
+    V[j,0] = math.log(qstart_pr[j] * E[j,c])
 
 for i in range(1,n):
     c = sigma.index(s[i])
@@ -52,4 +52,6 @@ y[n-1] = np.argmax(V[:,n-1])
 for i in range(n-1, 0, -1):
     y[i-1] = int(prev[y[i], i])
 print(V)
+import pandas as pd
+pd.DataFrame(V).to_csv('test.csv', sep='&')
 print(''.join([Q[i] for i in y]))
