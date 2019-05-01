@@ -3,7 +3,7 @@ import numpy as np
 from math import log10
 from WFMD import wfmd
 
-with open('datasets/test.txt','r') as f:
+with open('datasets/rosalind_foun.txt','r') as f:
     N,m, = [int(i) for i in f.readline().strip().split()]
     A = [int(i) for i in f.readline().strip().split()]
     k = len(A)
