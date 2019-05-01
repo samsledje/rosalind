@@ -1,15 +1,17 @@
 100
 --------
-xyyzyxxxzyyzxzxzzxzzzzyzxzzzxxyzzyyxzyzxzxxzyyyxxxzzxyxyyzzzyzzzyzyzxyzxyyxzyzzxyxyyzyzzyzyyxzxzxyyx
+yxxzyzyzxzxyxyxxzyzyyyyyyxxxzxzyxxzzxxxxxzyxyyyzxzxyxxxxyyyxzxxzyxyyzxyyyyzzxzxzxzyxzxyyxzzyxxzyyyyz
 --------
 x	y	z
 --------
-A	B
+A	B	C
 --------
-	A	B
-A	0.645	0.355	
-B	0.401	0.599	
+	A	B	C
+A	0.473	0.322	0.205	
+C	0.036	0.462	0.502	
+B	0.431	0.114	0.454	
 --------
 	x	y	z
-A	0.407	0.386	0.206	
-B	0.219	0.648	0.133
+A	0.45	0.243	0.307	
+C	0.404	0.34	0.256	
+B	0.577	0.422	0.001
